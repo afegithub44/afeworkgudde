@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+	This is My Home Page
+	</title>
+<style type="text/css">
+	h3{margin-left: 15px;
+		margin-right: 10px;
+		border-left:solid blue 8px;
+		background-color: violet!important;}
+button{
+	border-radius: 20px;
+	background-color: lightblue;
+	box-shadow: 10px;
+	border: solid blue 1px;
+	text-decoration-color: violet;
+	font-weight: bold;
+	font-family: cooper;
+	text-decoration:none ;
+	align: right;}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body bgcolor="aqua">
+	
+	<div>
+		<h1 style="font-family:arial;color:antiquewhite;"title="About Me">MicroProcessor and AL Group Assignement</h1>
+	</div>
+<div style="background-color: aquamarine ;">
+<h3>
+	<br>
+	<br>
+	<br>
+	<em>
+	<h3 style="font-family: Aharoni;border: none;margin-left: 0px;">Hello everybody!</h3>
+	1. Write an Assembly language program to add a number 5 times using loop<br><br>
+	   <code>
+	   	.data<br>
+  num  dw 5<br>
+  
+  .code<br>
+  main proc<br>
+    mov ax, num<br>
+    mov cx, 5<br>
+    addLoop:<br>
+      add ax, num<br>
+      loop addLoop<br>
+    mov dx, ax<br>
+    mov ah, 4ch<br>
+    int 21h<br>
+  main endp<br>
+  end main<br>
+</code><br>
+	2. Write an ALP to print hello world using INT 21H<br>
+			<code><br>
+				.data<br>
+  msg  db 'Hello World!', 0ah<br>
+   
+  .code<br>
+  main proc<br>
+    mov ah, 9<br>
+    mov dx, offset msg<br>
+    int 21h<br>
+    mov ah, 4ch<br>
+    int 21h<br>
+  main endp<br>
+  end main<br>
+			</code><br>
+	3. Write any ALP to show the usage of CMP<br>
+		<code><br>
+			.data <br>
+  message  db "Comparison between two numbers", 0ah<br>
+ 
+  .code<br>
+  main proc<br>
+    mov ax, 10<br>
+    mov bx, 15<br>
+    cmp ax, bx<br>
+    je equal<br>
+    jg greater<br>
+    jl lesser<br>
+ <br>
+    equal:<br>
+      mov dx, offset message<br>
+      mov ah, 9<br>
+      int 21h<br>
+      mov ah, 4ch<br>
+      int 21h<br>
+ <br>
+    greater:<br>
+      mov dx, offset message<br>
+      mov ah, 9<br>
+      int 21h<br>
+      mov ah, 4ch<br>
+      int 21h<br>
+ <br>
+    lesser:<br>
+      mov dx, offset message<br>
+      mov ah, 9<br>
+      int 21h<br>
+      mov ah, 4ch<br>
+      int 21h<br>
+  end main <br>
+  end<br>
+			
+		</code>		<br>
+	4. Write an ALP to show the usage of JN<br>
+	<code>
+		.data <br>
+  message  db "Number is not equal", 0ah<br>
+ <br>
+.code<br>
+main proc<br>
+  mov ax, 10<br>
+  mov bx, 15<br>
+  cmp ax, bx<br>
+  jne not_equal<br>
+  jmp exit<br>
+ <br>
+not_equal:<br> 
+  mov dx, offset message<br>
+  mov ah, 9<br>
+  int 21h<br>
+  mov ah, 4ch<br>
+  int 21h<br>
+ <br>
+exit: <br>
+  mov ah, 4ch<br>
+  int 21h<br>
+end main<br>
+end<br>
+	</code><br>
+5. Write an ALP that prints out 10 fibonacci serious.<br>
+	<code><br>
+		.data <br>
+  fibonacci DWORD 0,1,1,2,3,5,8,13,21,34 <br>
+<br>
+  .code<br>
+  main PROC<br>
+    mov ecx, 10 ; loop counter<br>
+    mov esi, 0 ; index pointer<br>
+    mov edx, OFFSET fibonacci ; point edx to fibonacci<br>
+    mov eax, [edx+esi] ; load first element<br>
+    mov ebx, [edx+esi+4] ; load second element<br>
+    mov edi, 0 ; set edi to 0<br>
+    ; loop 10 times<br>
+    L1: <br>
+      add edi, eax ; add the previous two numbers<br>
+      mov eax, ebx ; move the second number to the first number<br>
+      mov ebx, edi ; move the sum to the second number<br>
+      add esi, 4 ; increment index<br>
+      mov edx, OFFSET fibonacci ; point edx to fibonacci<br>
+      mov eax, [edx+esi] ; load the new first number<br>
+      mov ebx, [edx+esi+4] ; load the new second number<br>
+      mov eax, edi ; move the sum to eax<br>
+      mov edx, OFFSET fibonacci ; point edx to fibonacci<br>
+      mov [edx+esi+4], eax ; store sum in the next element<br>
+      mov edx, OFFSET fibonacci ; point edx to fibonacci<br>
+      mov eax, [edx+esi+4] ; load the sum<br>
+      call WriteDec ; print the sum<br>
+      loop L1 ; loop 10 times<br>
+    exit: <br>
+      mov ah, 4ch<br>
+      int 21h<br>
+  main ENDP<br>
+  END<br>
+	</code>
+</h3>
+<h4>
+	
+</h4>
+</div>
+<h2>GROUP  MEMBERS:</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>ID</th>
+  </tr>
+  <tr>
+    <td>Afework Gude</td>
+    <td>UGE/18695/12</td>
+  </tr>
+  <tr>
+    <td>Aklilu Hone </td>
+    <td> CC/0076/12</td>
+  </tr>
+  <tr>
+    <td>Asefa Amente</td>
+    <td>UGE/19357/12</td>
+  </tr>
+  <tr>
+    <td>Temesgen Yimam</td>
+    <td>UGE/18739/12</td>
+    
+  </tr>
+  <tr>
+    <td>Kelifa Aliyi</td>
+    <td>CCE/0096/12</td>
+    
+  </tr>
+  <tr>
+    <td>Abduraham Hassen</td>
+    <td>UGE/19534/12</td>
+    
+  </tr>
+</table>
+</body>
+</html>
